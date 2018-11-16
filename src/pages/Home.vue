@@ -2,18 +2,17 @@
     <div>
 		<div class='row' style='margin-top: 20px;'>
 			<div class="col col-md-3" style='text-align: center; padding: 0px;'>
-				<button type='submit' @click.prevent='bookit' class='btn btn-primary' style='margin:10px 10px;'>Book It</button>
-				<button v-if='userIsAdmin' type='submit' @click.prevent='employeeList' class='btn btn-basic' style='margin:10px 10px;'>Employee List</button>
+				<button v-if='userIsAdmin' type='submit' @click.prevent='employeeList' class='btn btn-info' style='margin:-15px 0 17px 2px;'>Employee List</button>
+				<button type='submit' @click.prevent='bookit' class='btn btn-info' style='margin:-15px 0 0 2px;'>Book event</button>
 				<eventDetails v-if='eventDetailsClicked' v-bind:detailsProps="detailsProps"></eventDetails>
 			</div>
 			<div class='col col-md-9'>
 				<div class='row'>
-					<div class='col-sm-12 col-md-2'></div>
-					<div class='col-sm-12 col-md-4'>
+					<div class='col-sm-12 col-md-6'>
 						<div class='buttons'>
-							<button v-on:click='prevMonth()'>&lt;</button>
-								{{currentMonth}}
-							<button v-on:click='nextMonth()'>&gt;</button>
+							<button class="btn btn-info col-2 r-b" v-on:click='prevMonth()'><span><</span></button>
+								<span class="curr-m">{{currentMonth}}</span>
+							<button class="btn btn-info col-2 l-b" v-on:click='nextMonth()'><span>></span></button>
 						</div>
 					</div>
 					<div class='col-sm-12 col-md-4'>
@@ -22,7 +21,7 @@
 				</div>
 				<br>
 				<div>
-					<a href='#' class='none' v-for='room of rooms' v-bind:id='room.id' :ref='"room" + room.id' v-bind:key='room.id' @click.prevent='selectRoom($event)'>{{room.name}}</a>
+					<a href='#' class='rooms' v-for='room of rooms' v-bind:id='room.id' :ref='"room" + room.id' v-bind:key='room.id' @click.prevent='selectRoom($event)'>{{room.name}}</a>
 				</div>
 				<div id='calendar'>
 					<div class='dayName' v-for='weekDay in daysInWeek' v-bind:key='weekDay.id'>
@@ -41,43 +40,76 @@
   </div>
 </template>
 <style>
-	.none {
-		padding: 0 10px;	
+.buttons {
+	margin-top: -15px;
+}
+.buttons span {
+	font-weight: 600;
+	color: #000;
+	font-size: 20px;
+}
+.buttons .curr-m {
+	font-style: italic;
+	font-weight: 600;
+	font-size: 20px;
+	fon-family: monospace;
+	color: #ffffbb;
+}
+.r-b, .l-b {
+	margin: 0 10px;
+	background-color: orange !important;
+	color: #000;
+	font-size: 20px;
+	border: 1 px solid #3399ff;
+}
+	.rooms {
+		padding: 0 10px;
+		color: #ffffbb;
+		font-style: italic;
+		font-family: monospace;
 	}
-	.none:hover {
+	.rooms:hover {
 		text-decoration: none;
 	}
 	.room-active {
 		font-weight: 600;
+		font-size: 20px;
 	}
   #calendar {
 	margin: 0 auto;
 	padding-left: 5px;
-    border: 1px solid black;
-    width: 600px;
+    border: 2px solid #3399ff;
+    border-radius: 7px;
+    width: 672px;
     min-height: 472px;
     display: flex;
     flex-wrap: wrap;
     padding-top: 10px;
+    background-color: #222;
   }
   #list{
     text-align: left;
     padding-left: 20px;
   }
   .dayName {
-    color: black;
-	font-size: 14px;
-    width: 80px;
+    color: orange;
+    font-family: monospace;
+    font-style: italic;
+	font-size: 16px;
+    width: 90px;
     height: 20px;
     margin: 2px;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-weight: 600;
   }
   .day {
-    color: black;
+    color: orange;
+    font-family: monospace;
+    font-style: italic;
 	padding-left: 2px;
-    width: 80px;
+    width: 90px;
     height: 70px;
     margin: 2px;
     display: flex;
@@ -85,13 +117,41 @@
     align-items: top;
     cursor: pointer;
 	overflow: hidden;
+	font-weight: 600;
+	background-color: #555;
+	border-radius: 7px;
+	border: 1px solid #000;
   }
+.day ul li a {
+	font-size: 14px;
+	color: #ffffbb;
+	font-family: monospace;
+	font-style: italic;
+}
   .bordered {
-    border: 1px solid black;
+    border: 1px solid #3399ff;
+    border-radius: 7px;
   }
   .active {
-    background: green;
+    background: #999;
   }
+.btn-info {
+	width: 100%;
+}
+.container.shadow {
+	width: 76% !important;
+	position: relative;
+}
+.date {
+	position: absolute;
+	top: -15px;
+	right: -117px;
+	color: #ffffbb; 
+	font-family: monospace;
+	font-weight: 600;
+	font-style: italic;
+	font-size: 22px;
+}
 </style>
 <script>
 import EventDetails from '../components/EventDetails'

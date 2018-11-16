@@ -31,7 +31,7 @@
             <label for='pass'>Password</label>
             <input type='password' class='form-control' id='pass' placeholder='Password' v-model='password'>
           </div>
-          <button type='submit' class='btn btn-info col-12'>Add Employee</button>
+          <button type='submit' class='btn btn-info col-6'>Add Employee</button>
         </form>
       </div>
     </div>
@@ -90,9 +90,10 @@ export default {
             'Authorization': this.$store.state.auth.token
         }
       axios.post('/api/users/register', data, { headers: headers })
-        .then(res => {
-          console.log(res)
+          .then(res => {
+			this.$router.push({name: 'employee'})
         })
+         
         .catch(err => {
           console.log(err)
         })

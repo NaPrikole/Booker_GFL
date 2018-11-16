@@ -124,7 +124,7 @@ export default {
         }
       axios.put('/api/users/' + this.id, data, { headers: headers })
         .then(res => {
-          this.$router.push({name: 'loginError', params: {msg: 'User edited'}})
+          this.$router.push({name: 'employee'})
         })
         .catch(err => {
           console.log(err)

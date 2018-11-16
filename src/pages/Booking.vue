@@ -155,7 +155,7 @@ export default {
       selectedDescription: '',
       errors: [],
       users: [],
-      months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+      months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
       years: [2018],
       days: [],
       lastIdrecCounter: null

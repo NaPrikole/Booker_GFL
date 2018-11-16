@@ -1,20 +1,20 @@
 <template>
   <div>
-    <div style='border: 1px solid black; max-width: 100%; padding: 0 5px 0 10px; position: relative;'>
+    <div style='border: 1px solid #3399ff; border-radius: 7px; max-width: 100%; padding: 0 5px 0 10px; position: relative; margin: 5px;'>
       <h2>{{msg}}</h2>
       <div style='position: absolute; right: 10px; top: 10px;'>
-        <a href="#" @click.prevent='closeEventDetails'>close</a>
+        <a href="#"  style='font-size:14px; font-family: monospace; font-style: italic; color: #ffffbb' @click.prevent='closeEventDetails'>close</a>
       </div>
       <form v-on:submit.prevent='submitForm' method='post' style='padding-top:20px; text-align:left;'>
         <p v-if='errors.length' style='color:red'>
-          <b>Please fix next errors:</b>
+          <b>Please fix the fields below:</b>
           <ul>
             <li v-for='error in errors' v-bind:key='error.id'>{{ error }}</li>
           </ul>
         </p>
-        <b>When:</b>
-        <br>
-        {{starttime}}
+        <b style='font-size:14px; font-family: monospace; font-style: italic; color: #ffffbb'>Time:</b>
+        <br  style='font-size:14px; font-family: monospace; font-style: italic; color: #ffffbb'>
+        <span style='font-size:14px; font-family: monospace; font-style: italic; color: #ffffbb'>{{starttime}}</span>
         <div class='form-row'>
           <div class='form-group mb-3'>
             <select class='form-control' v-model='defaultStartHours'>
@@ -26,8 +26,8 @@
               <option  v-for='minute in minutes' v-bind:key='minute'>{{minute}}</option>
             </select>
           </div>
-        </div>
-        {{endtime}}
+        </div  style='font-size:14px; font-family: monospace; font-style: italic; color: #ffffbb'>
+        <span style='font-size:14px; font-family: monospace; font-style: italic; color: #ffffbb'> {{endtime}}</span>
         <div class='form-row'>
           <div class='form-group mb-3'>
             <select class='form-control' v-model='defaultEndHours'>
@@ -52,10 +52,10 @@
           <b>Notes:</b>
           <textarea class="form-control" rows="1" v-model='defaultDescription'></textarea>
         </div>
-        <div style='font-size:14px;'>
-          Submitted: {{created}}
+        <div style='font-size:14px; font-family: monospace; font-style: italic; color: #ffffbb'>
+          Created: {{created}}
         </div>
-        <div style='font-size:12px;'>Applied to all events in recurring?</div>
+        <div style='font-size:14px; font-family: monospace; font-style: italic; color: #ffffbb'>Applied to all events in recurring?</div>
         <div class='form-row'>
           <div class="form-check">
             <input class="form-check-input" type="radio" v-model='selectedRecurring' name="recurring" value='false' id="norecurring">
@@ -70,13 +70,17 @@
             </label>
           </div>
         </div>
-        <button type='submit' class='btn btn-primary' style='margin:30px 10px;'>Update</button>
-        <button @click.prevent='removeItem()' type='submit' class='btn btn-danger' style='margin:30px 0;'>Delete</button>
+        <button type='submit' class='btn btn-info' style='margin:30px 10px; background-color: orange; margin: 2px'>Update</button>
+        <button @click.prevent='removeItem()' type='submit' class='btn btn-info' style='margin: 2px; background-color: red;'>Remove</button>
       </form>
     </div>
   </div>
 </template>
-
+<style>
+.form-row {
+	margin-left: 0 !important;
+}
+</style>
 <script>
 import axios from 'axios'
 export default {

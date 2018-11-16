@@ -1,19 +1,57 @@
 <template>
   <div>
-	<div class='row' style='margin-top:40px;'>
-      <div class="col-md-2"></div>
-			<div class="col-md-8" style='text-align:left'>
-				<div style='margin-bottom: 20px;' class="row"  v-for='user in users' :key='user.id'>
-				<a class="col-6" v-bind:href='`mailto:${user.email}`'>{{user.fullname}}</a>
-				<a href='#' class="col-3" style='font-size:14px;' v-bind:id='user.id' @click='removeEmployee($event)'>REMOVE</a>
-				<a href='#' class="col-3" style='font-size:14px;' v-bind:id='user.id' @click='editEmployee($event)'>EDIT</a>
+	<div class='row'>
+     			<div class="col-md-11 employee-section mt-4">
+				<div class="row"  v-for='user in users' :key='user.id'>
+				<a class="col-6 employee-link" v-bind:href='`mailto:${user.email}`'>{{user.fullname}}</a>
+				<a href='#' class="col-3 crud-link" v-bind:id='user.id' @click='removeEmployee($event)'>remove</a>
+				<a href='#' class="col-3 crud-link" v-bind:id='user.id' @click='editEmployee($event)'>edit</a>
 				</div>
-				<button v-if='userIsAdmin' type='submit' @click.prevent='goToAddNewEmployee' class='btn btn-basic'>Add a new employee</button>
+				<button v-if='userIsAdmin' type='submit' @click.prevent='goToAddNewEmployee' class='btn btn-info col-6 offset-3 mt-2'>New employee</button>
 			</div>
 		</div>
   </div>
 </template>
-
+<style>
+.employee-section {
+	text-align: left;
+	background-color: lightblue;
+	border-radius: 7px;
+	margin: 0 15px;
+	padding: 15px;
+}
+.employee-link {
+	flex: 0 0 50%;
+	max-width: 50%;
+	color: #000;
+	font-style: italic;
+	font-weight: 600;
+	font-family: monospace;
+	font-size: 17px;
+	border-bottom: 1px solid #000;
+	margin-bottom: 3px;
+}
+.crud-link {
+    flex: 0 0 25%;
+    max-width: 25%;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-style: italic;
+    font-weight: 600;
+    font-family: monospace;
+    color: orange;
+    border: 1px solid #fff;
+    text-align: center;
+    padding: 0;
+    background-color: #333;
+    border-radius: 7px;
+    padding-top: 3px;
+    box-shadow: 
+    inset rgba(0,0,0,.6) 0 -3px 8px,
+    inset rgba(252,255,255,.7) 0 3px 8px,
+    rgba(0,0,0,.8) 0 3px 8px -3px;
+}
+</style>
 <script>
 import axios from 'axios'
 export default {

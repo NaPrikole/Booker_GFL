@@ -9,7 +9,7 @@
             <router-link to='/login' class='nav-link-sn'>SIGN IN</router-link>
           </li>
           <li class='nav-item'>
-            <a href="#" class='nav-link' v-if="isAuthenticated" @click="logout">LOG OUT</a>
+            <a href="#" class='nav-link-sn' v-if="isAuthenticated" @click="logout">LOG OUT</a>
           </li>
         </ul>
       </div>
@@ -18,12 +18,12 @@
     <div class="admin-crids">
       <p>Enter as Admin:</p>
       <p>Username: Vladimir</p>
-      <p>Password: 7777</p>
+      <p>Password: 777</p>
     </div>
     <div class="user-crids">
       <p>Enter as User:</p>
       <p>Username: Ann</p>
-      <p>Password: 7777</p>
+      <p>Password: 777</p>
     </div>
     <div class="footer"><span class="left">Created by Vladimir Ponomarenko </span><span class="center"> 2018 </span><span class="right"> GFL</span></div>
   </div>
